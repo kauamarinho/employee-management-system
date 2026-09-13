@@ -1,70 +1,71 @@
-# Sistema de Gerenciamento de Funcionários
+# 👔 Employee Management System
 
-Sistema desenvolvido em Java com o objetivo de simular o gerenciamento de funcionários de uma empresa. O projeto permite cadastrar, consultar, autenticar e administrar diferentes tipos de funcionários, aplicando conceitos fundamentais de Programação Orientada a Objetos.
+![Java](https://img.shields.io/badge/Java-OOP-orange?logo=openjdk)
 
-## Sobre o Projeto
+A Java-based system designed to simulate employee management within a company. The project allows registering, querying, authenticating, and administering different types of employees, applying fundamental Object-Oriented Programming concepts.
 
-O sistema foi criado para representar um cenário real de administração de funcionários dentro de uma empresa. Cada funcionário possui informações como CPF, salário e data de admissão, enquanto cargos específicos possuem características próprias.
+## 📌 About the Project
 
-Durante o desenvolvimento foram implementadas regras de negócio para validação de dados, autenticação de usuários e controle de funcionários cadastrados.
+The system was created to represent a real-world scenario of employee administration within a company. Each employee has information such as CPF, salary, and hire date, while specific roles have their own particular characteristics.
 
-## Funcionalidades
+During development, business rules were implemented for data validation, user authentication, and control of registered employees.
 
-- Cadastro de funcionários
-- Remoção de funcionários
-- Busca de funcionários por CPF
-- Listagem de funcionários cadastrados
-- Exibição da folha salarial da empresa
-- Autenticação de gerente
-- Consulta de funcionários por período de admissão
-- Tratamento de erros através de exceções personalizadas
+## ✨ Features
 
-## Modelo de Funcionários
+- Employee registration
+- Employee removal
+- Employee search by CPF
+- Listing of registered employees
+- Display of the company's payroll
+- Manager authentication
+- Employee search by hiring period
+- Error handling through custom exceptions
 
-O sistema trabalha com diferentes tipos de funcionários:
+## 👥 Employee Model
 
-### Gerente
+The system works with different types of employees:
 
-Possui acesso ao sistema por meio de autenticação utilizando senha.
+### Manager
 
-### Secretária
+Has access to the system through password-based authentication.
 
-Funcionário que possui adicional de salário conforme as regras definidas na aplicação.
+### Secretary
 
-### Vendedor
+Employee who receives a salary bonus according to the rules defined in the application.
 
-Funcionário responsável por vendas e que pode possuir regras específicas relacionadas à sua remuneração.
+### Salesperson
 
-## Estrutura da Aplicação
+Employee responsible for sales, who may have specific rules related to their compensation.
 
-A classe `Empresa` é responsável por gerenciar todos os funcionários cadastrados.
+## 🏗️ Application Structure
 
-As operações principais incluem:
+The `Empresa` (Company) class is responsible for managing all registered employees.
 
-- Adicionar funcionários
-- Remover funcionários
-- Buscar funcionários
-- Calcular folha salarial
-- Listar informações cadastradas
+The main operations include:
 
-## Validações Implementadas
+- Adding employees
+- Removing employees
+- Searching for employees
+- Calculating payroll
+- Listing registered information
 
-O sistema realiza validações para garantir a consistência dos dados:
+## ✅ Implemented Validations
 
-- Verificação de CPF duplicado
-- Validação de CPF informado
-- Validação de datas
-- Verificação de funcionários inexistentes
+The system performs validations to ensure data consistency:
 
-## Conceitos de Programação Aplicados
+- Duplicate CPF check
+- Validation of the provided CPF
+- Date validation
+- Check for non-existent employees
 
-- Programação Orientada a Objetos (POO)
-- Encapsulamento
-- Herança
-- Polimorfismo
+## 🧠 Applied Programming Concepts
+
+- Object-Oriented Programming (OOP)
+- Encapsulation
+- Inheritance
+- Polymorphism
 - Interfaces
-- Sobrescrita de métodos
-- Tratamento de exceções
+- Method overriding
+- Exception handling
 - Collections (ArrayList)
-- Organização em camadas de responsabilidade
-
+- Layered responsibility organization
