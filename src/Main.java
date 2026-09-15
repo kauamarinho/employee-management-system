@@ -3,137 +3,137 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Empresa empresa = new Empresa();
+        Company company = new Company();
         Scanner sc = new Scanner(System.in);
-        int opcao;
+        int option;
 
         try {
-            Secretaria s = new Secretaria("João", 3000.0, "17534557089", LocalDate.of(2022, 1, 10), true);
-            Gerente g = new Gerente("Maria", 4000.0, "17532257090", LocalDate.of(2021, 3, 15), "senha123");
-            Vendedor v = new Vendedor("Carlos", 4000.0, "1753355079", LocalDate.of(2023, 6, 20));
+            Secretary s = new Secretary("João", 3000.0, "17534557089", LocalDate.of(2022, 1, 10), true);
+            Manager m = new Manager("Maria", 4000.0, "17532257090", LocalDate.of(2021, 3, 15), "senha123");
+            Salesperson v = new Salesperson("Carlos", 4000.0, "1753355079", LocalDate.of(2023, 6, 20));
 
-            empresa.adicionarFuncionario(s);
-            empresa.adicionarFuncionario(g);
-            empresa.adicionarFuncionario(v);
+            company.addEmployee(s);
+            company.addEmployee(m);
+            company.addEmployee(v);
 
-        } catch (CpfInvalidoException e) {
-            System.out.println("Erro ao adicionar funcionário: " + e.getMessage());
+        } catch (InvalidCpfException e) {
+            System.out.println("Error adding employee: " + e.getMessage());
         }
 
         do {
             System.out.println("\n--- MENU ---");
-            System.out.println("1 - Cadastrar Funcionário (Secretaria)");
-            System.out.println("2 - Remover Funcionário");
-            System.out.println("3 - Listar Funcionários");
-            System.out.println("4 - Buscar Funcionário por CPF");
-            System.out.println("5 - Autenticar Gerente");
-            System.out.println("6 - Exibir Folha Mensal");
-            System.out.println("7 - Listar Funcionários por Período");
-            System.out.println("0 - Sair");
-            System.out.print("Escolha: ");
-            opcao = sc.nextInt();
+            System.out.println("1 - Register Employee (Secretary)");
+            System.out.println("2 - Remove Employee");
+            System.out.println("3 - List Employees");
+            System.out.println("4 - Search Employee by CPF");
+            System.out.println("5 - Authenticate Manager");
+            System.out.println("6 - Show Monthly Payroll");
+            System.out.println("7 - List Employees by Period");
+            System.out.println("0 - Exit");
+            System.out.print("Choose: ");
+            option = sc.nextInt();
             sc.nextLine();
 
             try {
-                switch (opcao) {
+                switch (option) {
                     case 1:
                         try {
-                            System.out.print("Nome: ");
-                            String nome = sc.nextLine();
+                            System.out.print("Name: ");
+                            String name = sc.nextLine();
                             System.out.print("CPF: ");
                             String cpf = sc.nextLine();
-                            System.out.print("Salário: ");
-                            double salario = sc.nextDouble();
+                            System.out.print("Salary: ");
+                            double salary = sc.nextDouble();
                             sc.nextLine();
-                            System.out.print("Data de admissão (AAAA-MM-DD): ");
-                            LocalDate data = LocalDate.parse(sc.nextLine());
-                            System.out.print("Possui idioma adicional (true/false): ");
-                            boolean idioma = sc.nextBoolean();
+                            System.out.print("Hire date (YYYY-MM-DD): ");
+                            LocalDate date = LocalDate.parse(sc.nextLine());
+                            System.out.print("Has language bonus (true/false): ");
+                            boolean languageBonus = sc.nextBoolean();
 
-                            Funcionario novo = new Secretaria(nome, salario, cpf, data, idioma);
-                            empresa.adicionarFuncionario(novo);
-                            System.out.println("Funcionário cadastrado!");
-                        } catch (CpfInvalidoException e) {
-                            System.out.println("Erro: " + e.getMessage());
+                            Employee newEmployee = new Secretary(name, salary, cpf, date, languageBonus);
+                            company.addEmployee(newEmployee);
+                            System.out.println("Employee registered!");
+                        } catch (InvalidCpfException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
                     case 2:
                         try {
-                            System.out.print("CPF do funcionário a remover: ");
-                            String cpfRemover = sc.nextLine();
-                            empresa.removerFuncionario(cpfRemover);
-                            System.out.println("Funcionário removido.");
-                        } catch (FuncionarioNaoEncontradoException e) {
-                            System.out.println("Erro: " + e.getMessage());
+                            System.out.print("CPF of the employee to remove: ");
+                            String cpfToRemove = sc.nextLine();
+                            company.removeEmployee(cpfToRemove);
+                            System.out.println("Employee removed.");
+                        } catch (EmployeeNotFoundException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
                     case 3:
-                        empresa.listarFuncionarios();
+                        company.listEmployees();
                         break;
 
                     case 4:
                         try {
-                            System.out.print("CPF para buscar: ");
-                            String cpfBuscar = sc.nextLine();
-                            Funcionario buscado = empresa.buscarFuncionarioPorCPF(cpfBuscar);
-                            System.out.println("Encontrado: " + buscado.getNome());
-                        } catch (FuncionarioNaoEncontradoException e) {
-                            System.out.println("Erro: " + e.getMessage());
+                            System.out.print("CPF to search: ");
+                            String cpfToSearch = sc.nextLine();
+                            Employee found = company.findEmployeeByCpf(cpfToSearch);
+                            System.out.println("Found: " + found.getName());
+                        } catch (EmployeeNotFoundException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
                     case 5:
                         try {
-                            System.out.print("CPF do gerente: ");
-                            String cpfGerente = sc.nextLine();
-                            Funcionario func = empresa.buscarFuncionarioPorCPF(cpfGerente);
-                            if (func instanceof Gerente g) {
-                                System.out.print("Digite a senha: ");
-                                String senha = sc.nextLine();
-                                if (g.autenticar(senha)) {
-                                    System.out.println("Senha correta!");
+                            System.out.print("Manager's CPF: ");
+                            String managerCpf = sc.nextLine();
+                            Employee employee = company.findEmployeeByCpf(managerCpf);
+                            if (employee instanceof Manager m) {
+                                System.out.print("Enter the password: ");
+                                String password = sc.nextLine();
+                                if (m.authenticate(password)) {
+                                    System.out.println("Correct password!");
                                 } else {
-                                    System.out.println("Senha incorreta!");
+                                    System.out.println("Incorrect password!");
                                 }
                             } else {
-                                System.out.println("Esse CPF não pertence a um gerente.");
+                                System.out.println("This CPF does not belong to a manager.");
                             }
-                        } catch (FuncionarioNaoEncontradoException e) {
-                            System.out.println("Erro: " + e.getMessage());
+                        } catch (EmployeeNotFoundException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
                     case 6:
-                        System.out.println("Folha mensal total: " + empresa.calcularFolhaMensal());
+                        System.out.println("Total monthly payroll: " + company.calculateMonthlyPayroll());
                         break;
 
                     case 7:
                         try {
-                            System.out.print("Data inicial (AAAA-MM-DD): ");
-                            LocalDate inicio = LocalDate.parse(sc.nextLine());
-                            System.out.print("Data final (AAAA-MM-DD): ");
-                            LocalDate fim = LocalDate.parse(sc.nextLine());
-                            empresa.listarFuncionariosPorPeriodo(inicio, fim);
-                        } catch (DataInvalidaException e) {
-                            System.out.println("Erro: " + e.getMessage());
+                            System.out.print("Start date (YYYY-MM-DD): ");
+                            LocalDate start = LocalDate.parse(sc.nextLine());
+                            System.out.print("End date (YYYY-MM-DD): ");
+                            LocalDate end = LocalDate.parse(sc.nextLine());
+                            company.listEmployeesByPeriod(start, end);
+                        } catch (InvalidDateException e) {
+                            System.out.println("Error: " + e.getMessage());
                         } catch (Exception e) {
-                            System.out.println("Data inválida! Use o formato AAAA-MM-DD.");
+                            System.out.println("Invalid date! Use the YYYY-MM-DD format.");
                         }
                         break;
 
                     case 0:
-                        System.out.println("Saindo...");
+                        System.out.println("Exiting...");
                         break;
 
                     default:
-                        System.out.println("Opção inválida!");
+                        System.out.println("Invalid option!");
                 }
             } catch (Exception e) {
-                System.out.println("Erro inesperado: " + e.getMessage());
+                System.out.println("Unexpected error: " + e.getMessage());
             }
-        } while (opcao != 0);
+        } while (option != 0);
 
         sc.close();
     }
