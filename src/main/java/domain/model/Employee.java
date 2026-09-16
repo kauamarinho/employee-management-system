@@ -1,12 +1,15 @@
+package domain.model;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public abstract class Employee {
     private String name;
-    private double baseSalary;
-    private String cpf;
+    private BigDecimal baseSalary;
+    private final String cpf;
     private LocalDate hireDate;
 
-    public Employee(String name, double baseSalary, String cpf, LocalDate hireDate) {
+    protected Employee(String name, BigDecimal baseSalary, String cpf, LocalDate hireDate) {
         this.name = name;
         this.baseSalary = baseSalary;
         this.cpf = cpf;
@@ -21,15 +24,15 @@ public abstract class Employee {
         this.name = name;
     }
 
-    public double getBaseSalary() {
+    public BigDecimal getBaseSalary() {
         return baseSalary;
     }
 
-    public void setBaseSalary(double baseSalary) {
+    public void setBaseSalary(BigDecimal baseSalary) {
         this.baseSalary = baseSalary;
     }
 
-    public final String getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
@@ -41,5 +44,5 @@ public abstract class Employee {
         this.hireDate = hireDate;
     }
 
-    public abstract double calculateSalary();
+    public abstract BigDecimal calculateSalary();
 }
